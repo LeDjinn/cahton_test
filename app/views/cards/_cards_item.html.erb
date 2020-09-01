@@ -1,0 +1,30 @@
+<h1>Le FRONT ici tu feras un panier ... ou un sac en plastique ... c'est toi qui voit moi je m'enfou</h1>
+<p> Si tu veux me modifier je suis modifiable ici : app/views/cards/show.html.erb</p>
+<p> PS JE NE SUIS VISIBLE QUE POUR LE USER </p>
+
+
+<% @order_items.each do |item| %>
+
+    <h3><%= item.product.title %></h3>
+    <h5><%= item.product.price %></h5>
+
+
+    <%= form_for item, remote: true do |f| %>
+
+
+
+        <%= f.hidden_field :product_id, :value => item.product.id %>
+        <%= f.number_field :quantity, :value => item.quantity.to_i %>
+        <%= f.submit "Modifier panier "%>
+
+        <%= link_to "Effacer des trucs", order_item_path(item), method: :delete, remote: true%>
+
+    <% end %>
+    <h2>Subtotal: <%= item.total %></h2>
+
+<% end %>
+
+
+
+
+<h3>Ici tu écriras le montant de l'achat FRONT stp n'oublie pas les guillets quand tu fais du texte: <%= current_order.subtotal %> €</h3>

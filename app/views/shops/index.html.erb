@@ -1,0 +1,49 @@
+<h1>Ici Mon Cher FRONT tu metteras la page  de l'utilisateur </h1>
+<p>Pour modifier cette page je me trouve ici:  app/views/shops/index.html.erb</p>
+
+<h1>Dans chaque phrase mon Cher FRont je t'ai laissé des indications bien précise avant <br>de copier coller un fichier html.erb lis mes commentaires mon français est pourris c'est pour cette raison que je suis dans le bacck </h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Photos de petit chatons inutiles </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Prix</th>
+      <th colspan="3">photo</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.price %>€</td>
+        <td><%= product.picture %></td>
+
+        <td><%= link_to 'Voir', shop_path(product) %></td>
+
+
+
+        <td>
+
+        
+          <%= form_for @order_item, remote: true  do |f|%>
+          <%= f.hidden_field :product_id, :value => product.id %>
+          <%= f.number_field :quantity, :value => 1, :min =>  1%>
+          <%= f.submit "Add to Card "%>
+
+
+          <% end %>
+        </td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<div id="card">
+  <%= render 'cards/card'%>
+</div>

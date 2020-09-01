@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ici front tu feras la partie ADMINISTRATEUR</h1>
+<h3>Le Front si tu touches au variables qui sont entre le '<' et '%'' tu peux casser le code</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Price</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title %></td>
+        <td><%= product.price %> €</td>
+        <td><%= product.picture %></td>
+
+        <td><%= link_to 'Voir', product %></td>
+        <td><%= link_to 'Modifier', edit_product_path(product) %></td>
+        <td><%= link_to 'Effacer', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Ajouter nouveau produit', new_product_path %>
